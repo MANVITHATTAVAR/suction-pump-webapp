@@ -15,17 +15,19 @@
     </style>
 </head>
 <body>
+    <div class="container my-5">
+        <table class="table table-bordered table-dark table-hover text-center ">
+            <tr  class="bg-dark">
+                <th>Sensor</th>
+                <th>Value</th>
+            </tr>
+        
+            <tbody id="myTable">
+                
+            </tbody>
+        </table>
+    </div>
     
-    <table class="table table">
-        <tr  class="bg-dark">
-            <th>Sensor</th>
-            <th>Value</th>
-        </tr>
-    
-        <tbody id="myTable">
-            
-        </tbody>
-    </table>
     
     <script>
         var myArray = []
@@ -54,11 +56,11 @@
     
             for (var i = 0; i < 1; i++){
                 var row = `<tr>
-                                <td>flow</td>
+                                <td>Flow</td>
                                 <td>${feeds[i].field1}</td>
                           </tr>
                           <tr>
-                                <td>volume</td>
+                                <td>Volume</td>
                                 <td>${feeds[i].field2}</td>
                           </tr>`
                 table.innerHTML = row

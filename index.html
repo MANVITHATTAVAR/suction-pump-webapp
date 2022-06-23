@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suction Pump</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        th{ 
+            color:#fff;
+                }
+    </style>
+</head>
+<body>
+    
+    <table class="table table">
+        <tr  class="bg-dark">
+            <th>Sensor</th>
+            <th>Value</th>
+        </tr>
+    
+        <tbody id="myTable">
+            
+        </tbody>
+    </table>
+    
+    <script>
+        var myArray = []
+        
+
+        setInterval(ajaxCall, 500); 
+
+        function ajaxCall() {
+            $.ajax({
+            method:'GET',
+            url:'https://api.thingspeak.com/channels/1732490/feeds.json?api_key=U3TPIFFHCTPIFAJC&results=2',
+            success:function(response){
+                myArray = response.feeds
+                buildTable(myArray)
+                console.log(myArray)
+            }
+        })
+        }
+    
+ 
+    
+    
+    
+        function buildTable(feeds){
+            var table = document.getElementById('myTable')
+    
+            for (var i = 0; i < 1; i++){
+                var row = `<tr>
+                                <td>flow</td>
+                                <td>${feeds[i].field1}</td>
+                          </tr>
+                          <tr>
+                                <td>volume</td>
+                                <td>${feeds[i].field2}</td>
+                          </tr>`
+                table.innerHTML = row
+    
+    
+            }
+        }
+    
+
+
+    </script>
+</body>
+</html>
